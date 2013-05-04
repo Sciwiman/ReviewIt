@@ -1,0 +1,21 @@
+<h1>List of reviews by <%=@user.username%>.</h1>
+
+<% @reviews.each do |review| %>
+    <div class="review">
+      <h1 class="r_title"><%= link_to review.title, review_path(review.id) %></h1>
+      <hr />
+      <p class="r_timestamp">Last Updated:<%= review.updated_at.to_date.to_formatted_s(:rfc822) %></p>
+      <p class="r_author">Author: <%= review.user.username %></p>
+      <p class="r_rating">Rating: <%=review.rating%> out of 5</p>
+        <% if user_signed_in? %>
+          <% if current_user.username == review.user.username %>
+            <div class="review_tools">
+              <%= link_to "Edit", edit_review_path(review) %> -
+              <%= link_to "Delete", review, :method=>:delete%>
+            </div>
+          <%end%>
+        <%end%>
+    </div>
+  <br />
+<%end%>
+<br />

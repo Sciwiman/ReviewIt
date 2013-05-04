@@ -1,0 +1,23 @@
+<h1><%= @review.title %></h1>
+<hr />
+<p id-"review_author">
+	By:<%= link_to @review.user.username,  user_account_path(@review.user.username)%>
+	 
+	<%= link_to "Subscribe", subscriptions_path(:user_id => current_user, :subscription_user_id => @review.user), :method => :post %>
+</p>
+
+<div id="review_div">
+	<p id="review_rating">
+		My Rating - <%= @review.rating %> out of 5
+	</p>
+	<p class="review_content"><%= @review.content %></p>
+</div>
+<br>
+<% if user_signed_in? %>
+	<% if current_user.username == @review.user.username %>
+		<div class="author_tools">
+			<%= link_to "Edit", edit_review_path(@review) %>
+			<%= link_to "Delete", @review, :method=>:delete%>
+		</div>
+	<%end%>
+<%end%>
