@@ -11,7 +11,6 @@ gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'progress_bar'
 gem 'browser'
-gem 'safe_attributes', '~> 1.0.10'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
@@ -35,6 +34,8 @@ end
 
 group :development do
 	gem 'sqlite3'
+	gem 'safe_attributes', '~> 1.0.10'
+
 end 
 
 gem 'jquery-rails'
