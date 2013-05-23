@@ -1,22 +1,26 @@
 class ReviewsController < ApplicationController
-  # GET /reviews
-  # GET /reviews.json
+
+  #Checks to make sure the user is signed in, except on the show and index page
   before_filter :authenticate_user!, :except => [:show,:index]
 
+  # GET /reviews
+  # GET /reviews.json
+  #Perorms a search via the given parameter and displays the results
   def index
     @search = Review.search do
       fulltext params[:search]
     end
     @reviews = @search.results
-
+    
     respond_to do |format|
       format.html # index.html.erbcurrent
       format.json { render json: @reviews }
     end
-  end
+end
 
   # GET /reviews/1
   # GET /reviews/1.json
+  #Shows an individual review based off the id given to it
   def show
     @review = Review.find(params[:id])
 
@@ -28,6 +32,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   # GET /reviews/new.json
+  # Sets up a new review
   def new
     @review = Review.new
 
@@ -38,18 +43,20 @@ class ReviewsController < ApplicationController
   end
 
   # GET /reviews/1/edit
+  #passes in the review to be editted
   def edit
     @review = Review.find(params[:id])
   end
 
   # POST /reviews
   # POST /reviews.json
+  #Creates a new review wqith the review user id by default set to the signed in user
   def create
     @review = Review.new(params[:review])
     @review.user_id = current_user.id
     respond_to do |format|
       if @review.save
-        format.html { redirect_to user_account_path(@review.user.username), notice: 'Review was successfully created by ' + current_user.username + "."}
+        format.html { redirect_to user_account_path(@review.user.username), notice: "Review Created"}
         format.json { render json: @review, status: :created, location: @review }
       else
         format.html { render action: "new" }
@@ -60,6 +67,7 @@ class ReviewsController < ApplicationController
 
   # PUT /reviews/1
   # PUT /reviews/1.json
+  # Gets the review ready for edditing given by an id for a review
   def update
     @review = Review.find(params[:id])
 
@@ -76,6 +84,7 @@ class ReviewsController < ApplicationController
 
   # DELETE /reviews/1
   # DELETE /reviews/1.json
+  #destroys a review
   def destroy
     @review = Review.find(params[:id])
     @review.destroy

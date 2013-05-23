@@ -1,0 +1,89 @@
+@import "twitter/bootstrap/bootstrap";
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
+//       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot?v=3.0.2");
+@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix&v=3.0.2");
+@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff?v=3.0.2");
+@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf?v=3.0.2");
+
+// Font Awesome
+@import "fontawesome";
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See  for their names and documentation
+//
+// Example:
+
+@bodyBackground:#F0F0F0 ;
+
+
+
+@navbarBackground:@black;
+@navbarBackgroundHighlight:lighten(@navbarBackground, 20%);
+@navbarBrandColor:lighten(@navbarBackground, 40%);
+@navbarText:@grayLight;
+
+@linkColor:#04396C;
+
+
+input#search.search-query{
+	-webkit-transition: all 400ms ease-in-out;
+	background-color:lighten(@navbarBackground, 20%);
+	border-color:black;
+	padding-left:10px;
+	padding-bottom:2px;
+	margin-top:4px;
+}
+
+.navbar{
+	-webkit-transition: all 400ms ease-in-out;
+}
+
+input#search.search-query:focus{
+	-webkit-transition: all 400ms ease-in-out;
+	background-color:lighten(@navbarBackground, 90%);
+	color:black;
+	box-shadow: 0px 0px 5px #FFFFFF;
+}
+
+
+a.brand:hover{
+	color:lighten(@navbarBackground, 60%);		
+}
+
+@media (max-width: 767px){
+	body {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.navbar-fixed-top{
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-bottom:0px;
+	}
+	.container{
+	padding-left:20px;
+	padding-right:20px;
+	}
+}
+
+@media (max-width: 979px){
+	.navbar-fixed-top{
+		margin-bottom:0px;
+	}
+}

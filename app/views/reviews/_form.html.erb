@@ -24,14 +24,23 @@
   <%else%>
     <div class='field'>
       <%= f.label :rating %><br />
-      <%= f.range_field :rating, :in => 0..5, :step => '1'%>
+      <%= f.range_field :rating, :in => 0..5,:value => 3, :step => '1', :id => 'range_field', :onchange => 'change()', :onload => 'change()'%>
       <br>
-      <a>0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5</a>
+      <h4 id="range_number">3 out of 5</h4>
+      <script>
+      function change(){
+          var div = document.getElementById("range_number");
+          var range = document.getElementById("range_field");
+
+          div.innerHTML = range.value + " out of 5";
+        }
+
+      </script>
     </div>
   <%end%>
   <br />
   <hr />
   <div class="actions">
-    <%= f.submit %>
+     <button class="btn btn-success" type="submit">Create Review</button>
   </div>
 <% end %>

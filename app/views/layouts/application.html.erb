@@ -2,42 +2,96 @@
 <html>
 <head>
   <title>Ass3</title>
-  <%= stylesheet_link_tag    "ass3", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:600' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-	<div id="notice_box">
-		<p class="notice"><%= notice %></p>
-		<p class="alert"><%=alert%></p>
-	</div>
-	<div id="main">
-		<div id="login_details">
-			<div id="login_content">
-				<% if user_signed_in? %>
-		    		<p>Account: <%= link_to current_user.username, user_account_path(current_user.username)  %></p>
-		    		<hr class="line_underAct" \>
-		   			<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-		   			<br \>
-		   			<br \>
-		   			<%= link_to "Create a review", new_review_path %>
-		   			<br \>
-		   			<br \>
-		   			<%= link_to "Edit Account", edit_user_registration_path %>
-		   			<br \>
-		   		<%else%>
-		   		<p>Not Currently Signed In</p>
-		   		<hr />
-		   		<%= link_to "Sign In", new_user_session_path %>
-		   		<br />
-		   		<br />
-		   		<%= link_to "Sign Up", new_user_registration_path %>
-		   		<%end%>
-		   	</div>
-	   	</div>
-	   	<div id='yield_content'>
-			<%= yield %>
+	<body>
+		<div id="wrap">
+			<div class="navbar navbar-fixed-top">
+				<div class="navbar-inner">
+					<div class="container">
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						</a>
+						<%=link_to "ReviewIt", root_path, :class=>"brand" %>
+						<div class="nav-collapse">
+							<ul class="nav nav-pills">
+								<li class="divider-vertical"></li>
+								<% if user_signed_in? %>
+									<li class="dropdown">
+										<div class="btn-group">
+											<button class="btn btn-primary"><%= link_to raw("<i class=\"icon-user icon-white\"></i>")+current_user.username, user_account_page_path(current_user.username), :id => "username_tag",  :class => "menu_button btn-content"%></button>
+											<button class="btn dropdown-toggle btn-primary"data-toggle="dropdown"href="#">
+													<i class="icon-chevron-down icon-white"></i>
+											</button>
+											<ul class="dropdown-menu">
+												<li><%= link_to raw("<i class=\"icon-home icon-white\"></i>")+"Homepage", user_account_page_path(current_user.username), :id => "username_tag",  :class => "menu_button"%></li>
+												<li><%= link_to raw("<i class=\"icon-pencil icon-white\"></i>")+"Create a review", new_review_path,:class => "menu_button" %> </li>
+												<li><%= link_to raw("<i class=\"icon-folder-open icon-white\"></i>")+"Your Reviews", user_account_path(current_user.username),:class => "menu_button"%> </li>
+												<li><%= link_to raw("<i class=\"icon-eye-open icon-white\"></i>")+"View Subscriptions", subscriptions_path,:class => "menu_button"%> </li>
+												<li><%= link_to raw("<i class=\"icon-wrench icon-white\"></i>")+"Edit Account", edit_user_registration_path,:class => "menu_button" %> </li>
+												<li class="divider"></li>
+												<li><%= link_to raw("<i class=\"icon-remove-sign icon-white\"></i>")+"Sign Out", destroy_user_session_path, :method => :delete,:class => "menu_button" %></li>
+											</ul>
+										</div>
+									</li>
+								<%else%>
+									<li><span class="btn btn-info"><%= link_to raw("<i class=\"icon-play icon-white\"></i>")+" Sign In", new_user_session_path, :class => "btn-content"%></span></li>
+									<li class="divider-vertical"></li>
+									<li><span class="btn btn-success"><%= link_to raw("<i class=\"icon-plus icon-white\"></i>")+" Create Account", new_user_registration_path, :class=>"btn-content"%></span> </li>
+								<%end%>
+								<li class="divider-vertical"></li>
+								<li>
+									<%= form_tag reviews_path, :class => "navbar-search pull-right", :method => :get do %>
+										<%= text_field_tag :search, params[:search],:placeholder => "Search for a review", :class => "search-query" %>
+									<% end %>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		<header class="jumbotron masthead">
+			<div class="container">
+				<div class="page-header">
+					<h1>Review It - <%= yield :title %></h1>
+				</div>
+			</div>
+		</header>
+		<div class="container">
+				<div id="main_content">
+					<div id="main">
+						<div id="notifications">
+							<% if notice != nil%>
+								<div class="alert">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong>Notice: </strong><a id="notice"><%= notice %></a>				
+								</div>
+							<%end%>
+							<%if alert != nil %>
+							<div class="alert">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Alert:  </strong><a id="alert"><%= alert %></a>
+							</div>
+							<%end%>
+						</div>
+							<br />
+							<%= yield %>
+					</div>
+				</div>
 		</div>
 	</div>
-</body>
+		<footer class="footer">
+			<div class="container">
+				<a>Created By David Brougham and James Lord - COMP333 Waikato University Assignment 3-4 |</a><a> About</a>
+			</div>
+		</footer>
+	</body>
 </html>

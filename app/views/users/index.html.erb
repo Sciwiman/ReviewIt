@@ -1,5 +1,4 @@
-<h1>List of reviews by <%=@user.username%>.</h1>
-
+<div id='view_content'>
 <% @reviews.each do |review| %>
     <div class="review">
       <h1 class="r_title"><%= link_to review.title, review_path(review.id) %></h1>
@@ -10,8 +9,10 @@
         <% if user_signed_in? %>
           <% if current_user.username == review.user.username %>
             <div class="review_tools">
-              <%= link_to "Edit", edit_review_path(review) %> -
-              <%= link_to "Delete", review, :method=>:delete%>
+              <div class="btn-group">
+                <button class="btn btn-info"><%= link_to raw("<i class=\"icon-edit icon-white\"></i>")+" Edit", edit_review_path(review),:class => "btn-content"%></button>
+                <button class="btn btn-danger"><%= link_to raw("<i class=\"icon-remove icon-white\"></i>")+" Delete",review,:class => "btn-content",:method=>:delete%></button>
+              </div>
             </div>
           <%end%>
         <%end%>
@@ -19,3 +20,17 @@
   <br />
 <%end%>
 <br />
+<hr />
+</div>
+
+<% if current_user.username == @user.username %>
+  <% content_for :title do %>
+    <small>Your Reviews</small>
+  <%end%>
+<%else%>
+  <% content_for :title do %>
+    <small>Reviews by <%=@user.username%></small>
+  <%end%>
+<%end%>
+
+

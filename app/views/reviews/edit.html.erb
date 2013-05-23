@@ -1,6 +1,14 @@
-<h1>Editing review</h1>
+<div id='view_content'>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @review %> |
-<%= link_to 'Back', reviews_path %>
+<hr />
+<div class="btn-group">
+	<button class="btn btn-warning"><%= link_to raw("<i class=\"icon-arrow-left icon-white\"></i>")+" Back",:back,:class => "btn-content"%></button>
+    <button class="btn btn-info"><%= link_to raw("<i class=\"icon-eye-open icon-white\"></i>")+" Show",  @review,:class => "btn-content"%></button>
+</div>
+</div>
+
+<% content_for :title do %>
+	<small>Edit Review</small>
+<%end%>

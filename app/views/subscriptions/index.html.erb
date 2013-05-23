@@ -1,29 +1,30 @@
-<h1>Listing subscriptions</h1>
+<div id='view_content'>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Username</th>
+				<th>Unsubscribe</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @counter = 1 %>
+		<% @subscriptions.each do |subscription| %>
+			<tr>
+				<th><%=@counter%></th>
+				<%@counter=@counter + 1%>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Subscription user</th>
-    <th>Create</th>
-    <th>Destroy</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+				<%@username = User.where("id =?",subscription.subscription_user_id).first%>
+		     <%if @username != nil %>
+		     	 <th><%= link_to @username.username, user_account_path(@username.username), :class => "user_sub" %></th>
+		     	 <th> <%=link_to "X", subscription, :method=>:delete , :class => "user_unsub" %></th>
+		     <%end%>
+		 </tr>
+		<%end%>
+		</tbody>
+	</table>
+</div>
 
-<% @subscriptions.each do |subscription| %>
-  <tr>
-    <td><%= subscription.user_id %></td>
-    <td><%= subscription.subscription_user_id %></td>
-    <td><%= subscription.create %></td>
-    <td><%= subscription.destroy %></td>
-    <td><%= link_to 'Show', subscription %></td>
-    <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
-    <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Subscription', new_subscription_path %>
+<% content_for :title do %>
+	<small>Your Subscriptions</small>
+<%end%>

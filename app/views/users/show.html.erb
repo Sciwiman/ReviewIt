@@ -1,1 +1,80 @@
-<p>test</p>
+<div id='view_content'>
+<h3>Here is the latest review from your subscribed reviewers</h3>
+<hr />
+<div id="review_updates">
+	<% @reviews.each do |review| %>
+	 	<div class="review">
+			<h1 class="r_title"><%= link_to review.title, review_path(review.id) %></h1>
+		    <p class="r_timestamp">Last Updated: <%= review.updated_at.to_date.to_formatted_s(:rfc822) %></p>
+		    <p class="r_author">Author: <%= link_to review.user.username, user_account_path(review.user.username) %></p>
+		    <p class="r_rating">Rating: <%=review.rating%> out of 5</p>
+			    <% if user_signed_in? %>
+			        <% if current_user.username == review.user.username %>
+			          <div class="review_tools">
+			            <%= link_to "Edit", edit_review_path(review) %> -
+			            <%= link_to "Delete", review, :method=>:delete%>
+			          </div>
+			        <%end%>
+			     <%end%>
+	  	</div>
+	  <br />
+	<%end%>
+</div>
+</div>
+<% if notice != nil %>
+<script> 
+		var geocoder;
+		var latlng;
+		 window.onload = function(){
+				if(navigator.geolocation){
+					navigator.geolocation.getCurrentPosition(showPosition,showError);
+				}
+				else{
+					alert("Geolocation is not supported by this browser.");
+				}
+			}
+
+			geocoder = new google.maps.Geocoder();
+
+			function showPosition(pos){
+				latlng = new google.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
+				geocoder.geocode({'latLng':latlng},function(results,status){
+						if (status == google.maps.GeocoderStatus.OK) {
+
+							var main = document.getElementById('notifications');
+							var div = document.createElement('div');
+							div.setAttribute('class','alert');
+
+							div.innerHTML='<span type="button" class="close" data-dismiss="alert">&times;</span><strong>Notice: </strong><a id="notice">Logged in from: '+results[1].formatted_address+"</a>";
+
+
+							main.appendChild(div);
+				      } else {
+				        alert("Geocoder failed due to: " + status);
+				      }
+				});
+			}
+
+			function showError(error){
+			  switch(error.code)
+			    {
+			    case error.PERMISSION_DENIED:
+			      alert("User denied the request for Geolocation.")
+			      break;
+			    case error.POSITION_UNAVAILABLE:
+			      alert("Location information is unavailable.")
+			      break;
+			    case error.TIMEOUT:
+			      alert("The request to get user location timed out.")
+			      break;
+			    case error.UNKNOWN_ERROR:
+			      alert("An unknown error occurred.")
+			      break;
+			    }
+			}
+</script>
+<%end%>
+
+<% content_for :title do %>
+	<small>Homepage</small>
+<%end%>

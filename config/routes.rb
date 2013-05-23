@@ -1,7 +1,5 @@
 Ass3::Application.routes.draw do
   resources :subscriptions
-
-
   resources :reviews
 
 
@@ -11,8 +9,12 @@ Ass3::Application.routes.draw do
   resources :users
 
   match ':username' => 'Users#index', :as => 'user_account'
-
+  match ':new_subscription' => 'subscriptions#index'
+  match ':username/homepage' => 'Users#show', :as => 'user_account_page'
   root :to => "home#index"
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

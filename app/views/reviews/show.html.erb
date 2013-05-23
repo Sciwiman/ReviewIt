@@ -1,23 +1,32 @@
-<h1><%= @review.title %></h1>
-<hr />
-<p id-"review_author">
-	By:<%= link_to @review.user.username,  user_account_path(@review.user.username)%>
-	 
-	<%= link_to "Subscribe", subscriptions_path(:user_id => current_user, :subscription_user_id => @review.user), :method => :post %>
-</p>
+<div id='view_content'>
+	<h2 id="review_author">
+		By:<%= link_to @review.user.username,  user_account_path(@review.user.username)%>
+		<%if user_signed_in?%>
+			<%if @review.user.id != current_user.id %>
+						 <button class="btn btn-success btn-large"><%= link_to raw("<i class=\"icon-thumbs-up icon-white\"></i>")+" Subscribe",subscriptions_path(:user_id => current_user, :subscription_user_id => @review.user),:class => "btn-content",:method => :post%></button>
+			<%end%>
+		<%end%>
+	</h2>
 
-<div id="review_div">
-	<p id="review_rating">
-		My Rating - <%= @review.rating %> out of 5
-	</p>
-	<p class="review_content"><%= @review.content %></p>
-</div>
-<br>
-<% if user_signed_in? %>
-	<% if current_user.username == @review.user.username %>
-		<div class="author_tools">
-			<%= link_to "Edit", edit_review_path(@review) %>
-			<%= link_to "Delete", @review, :method=>:delete%>
-		</div>
+	<div id="review_div">
+		<h3 id="review_rating">
+			My Rating - <%= @review.rating %> out of 5
+		</h3>
+		<p class="review_content"><%= @review.content %></p>
+	</div>
+	<br>
+	<% if user_signed_in? %>
+		<% if current_user.username == @review.user.username %>
+			<div class="review_tools">
+              <div class="btn-group">
+                <button class="btn btn-info"><%= link_to raw("<i class=\"icon-edit icon-white\"></i>")+" Edit", edit_review_path(review),:class => "btn-content"%></button>
+                <button class="btn btn-danger"><%= link_to raw("<i class=\"icon-remove icon-white\"></i>")+" Delete",review,:class => "btn-content",:method=>:delete%></button>
+              </div>
+            </div>
+		<%end%>
 	<%end%>
+</div>
+
+<% content_for :title do %>
+	<small><%= @review.title %></small>
 <%end%>
