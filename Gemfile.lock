@@ -156,7 +156,7 @@ DEPENDENCIES
   pg
   progress_bar
   rails (= 3.2.13)
-  safe_attributes
+  safe_attributes (~> 1.0.10)
   sass-rails (~> 3.2.3)
   sqlite3
   sunspot_rails
