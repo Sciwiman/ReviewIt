@@ -5,14 +5,13 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
 
 gem 'devise', '2.0'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'progress_bar'
 gem 'browser'
-gem 'safe_attributes'
+#gem 'safe_attributes'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
@@ -29,6 +28,14 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
+
+group :production do
+	gem 'pg'
+end
+
+gem :development do
+	gem 'sqlite3'
+end 
 
 gem 'jquery-rails'
 
