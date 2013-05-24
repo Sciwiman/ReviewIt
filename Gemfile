@@ -5,7 +5,7 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
+gem 'safe_attributes'
 gem 'devise', '2.0'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
@@ -34,7 +34,6 @@ end
 
 group :development do
 	gem 'sqlite3'
-	gem 'safe_attributes', '~> 1.0.10'
 
 end 
 
