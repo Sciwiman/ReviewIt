@@ -106,6 +106,8 @@ GEM
     ref (1.0.4)
     rsolr (1.0.9)
       builder (>= 2.1.2)
+    safe_attributes (1.0.10)
+      activerecord (>= 3.0.0)
     sass (3.2.8)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -146,7 +148,6 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  activerecord
   browser
   coffee-rails (~> 3.2.1)
   devise (= 2.0)
@@ -155,6 +156,7 @@ DEPENDENCIES
   pg
   progress_bar
   rails (= 3.2.13)
+  safe_attributes
   sass-rails (~> 3.2.3)
   sqlite3
   sunspot_rails

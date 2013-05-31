@@ -63,7 +63,13 @@ input#search.search-query:focus{
 
 
 a.brand:hover{
-	color:lighten(@navbarBackground, 60%);		
+	-webkit-transition: all 400ms ease-in-out;
+	color:lighten(@navbarBackground, 100%);		
+}
+
+a.brand{
+	-webkit-transition: all 400ms ease-in-out;
+	color:lighten(@navbarBackground, 20%);	
 }
 
 @media (max-width: 767px){
@@ -86,4 +92,19 @@ a.brand:hover{
 	.navbar-fixed-top{
 		margin-bottom:0px;
 	}
+
+	.btn-group > .btn{
+		border-radius:0px;
+		-webkit-border-radius: 0px;
+	}
+
+	.btn-group > .dropdown-toggle{
+		border-bottom-right-radius:4px;
+		border-top-right-radius:4px;
+	}
+}
+
+button.btn.btn-danger > a{
+	text-decoration:none;
+	color:#FFFFFF;
 }
