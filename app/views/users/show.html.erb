@@ -24,8 +24,8 @@
 </div>
 <% if notice != nil %>
 <script> 
-		var geocoder;
 		var latlng;
+
 		 window.onload = function(){
 				if(navigator.geolocation){
 					navigator.geolocation.getCurrentPosition(showPosition,showError);
@@ -35,10 +35,11 @@
 				}
 			}
 
-			geocoder = new google.maps.Geocoder();
+			var geocoder = new google.maps.Geocoder();
 
 			function showPosition(pos){
 				latlng = new google.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
+				
 				geocoder.geocode({'latLng':latlng},function(results,status){
 						if (status == google.maps.GeocoderStatus.OK) {
 
