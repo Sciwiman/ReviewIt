@@ -13,9 +13,13 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.submit "Sign up" %></div>
+  <div class="actions">
+     <button class="btn btn-success" type="submit">Sign Up</button>
+  </div>
+
 <% end %>
 
+<hr />
 <%= render "links" %>
 </div>
 

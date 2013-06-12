@@ -1,5 +1,14 @@
 <div id="banner">
 	Welcome to ReviewIt, a site where you can read and subscribe to your favourite authors. Here you will find reviews from tv shows and movies to books or hardware. The list is endless cause there is a endless amount of things to review. So what are you waiting for, sign up today!
+	<hr \>
+		<p><b>
+		    <% if browser.chrome? %>
+			    You are using a suitable browser for this application.
+			<%else%>
+				You are using <%=browser.name%>. For the best experience please use the latest version of google chrome :)
+			<%end%>
+	</b></p>
+
 </div>
 
 <% content_for :title do %>

@@ -1,9 +1,9 @@
 class Review < ActiveRecord::Base
   
-  #A review belongs to a user, indicaring a ont to one relationship
+  #A review belongs to a user, indicating a one to one relationship
   belongs_to :user
 
-  #Lists all the attributes that i can access
+  #Lists all the attributes that I can access
   attr_accessible :user_id, :content, :title, :timestamp, :rating, :updated_at
 
   #Validates it has an associated user

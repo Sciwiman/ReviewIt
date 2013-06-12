@@ -19,8 +19,8 @@
 		<% if current_user.username == @review.user.username %>
 			<div class="review_tools">
               <div class="btn-group">
-                <button class="btn btn-info"><%= link_to raw("<i class=\"icon-edit icon-white\"></i>")+" Edit", edit_review_path(review),:class => "btn-content"%></button>
-                <button class="btn btn-danger"><%= link_to raw("<i class=\"icon-remove icon-white\"></i>")+" Delete",review,:class => "btn-content",:method=>:delete%></button>
+                <button class="btn btn-info"><%= link_to raw("<i class=\"icon-edit icon-white\"></i>")+" Edit", edit_review_path(@review),:class => "btn-content"%></button>
+                <button class="btn btn-danger"><%= link_to raw("<i class=\"icon-remove icon-white\"></i>")+" Delete",@review,:class => "btn-content",:method=>:delete%></button>
               </div>
             </div>
 		<%end%>

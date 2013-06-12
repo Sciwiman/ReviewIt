@@ -23,14 +23,20 @@
 <hr />
 </div>
 
-<% if current_user.username == @user.username %>
-  <% content_for :title do %>
-    <small>Your Reviews</small>
+<%if user_signed_in? %>
+  <% if current_user.username == @user.username %>
+    <% content_for :title do %>
+      <small>Your Reviews</small>
+    <%end%>
+  <%else%>
+    <% content_for :title do %>
+      <small>Reviews by <%=@user.username%></small>
+    <%end%>
   <%end%>
 <%else%>
-  <% content_for :title do %>
-    <small>Reviews by <%=@user.username%></small>
-  <%end%>
+    <% content_for :title do %>
+      <small>Reviews by <%=@user.username%></small>
+    <%end%>
 <%end%>
 
 

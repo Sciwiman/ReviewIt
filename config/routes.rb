@@ -8,6 +8,7 @@ Ass3::Application.routes.draw do
   devise_for :users
   resources :users
 
+  match '/about' => 'About#about'
   match ':username' => 'Users#index', :as => 'user_account'
   match ':new_subscription' => 'subscriptions#index'
   match ':username/homepage' => 'Users#show', :as => 'user_account_page'

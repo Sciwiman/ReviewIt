@@ -1,24 +1,29 @@
 <div id='view_content'>
-<h3>Click on the review to read all about it.</h3>
-<hr />
-<% @reviews.each do |review| %>
-  	<div class="review">
-	    <h1 class="r_title"><%= link_to review.title, review_path(review.id) %></h1>
-	    <p class="r_timestamp">Last Updated: <%= review.updated_at.to_date.to_formatted_s(:rfc822) %></p>
-	    <p class="r_author">Author: <%= link_to review.user.username, user_account_path(review.user.username) %></p>
-	    <p class="r_rating">Rating: <%=review.rating%> out of 5</p>
-		    <% if user_signed_in? %>
-		        <% if current_user.username == review.user.username %>
-		             <div class="review_tools">
-			              <div class="btn-group">
-			                <button class="btn btn-info"><%= link_to raw("<i class=\"icon-edit icon-white\"></i>")+" Edit", edit_review_path(review),:class => "btn-content"%></button>
-			                <button class="btn btn-danger"><%= link_to raw("<i class=\"icon-remove icon-white\"></i>")+" Delete",review,:class => "btn-content",:method=>:delete%></button>
-			              </div>
-			            </div>
-		        <%end%>
-		     <%end%>
-  	</div>
-  <br />
+
+<%if @reviews.count == 0%>
+	<h3>No reviews to display</h3>
+<%else%>
+	<h3>Click on the review to read all about it.</h3>
+	<hr />
+	<% @reviews.each do |review| %>
+	  	<div class="review">
+		    <h1 class="r_title"><%= link_to review.title, review_path(review.id) %></h1>
+		    <p class="r_timestamp">Last Updated: <%= review.updated_at.to_date.to_formatted_s(:rfc822) %></p>
+		    <p class="r_author">Author: <%= link_to review.user.username, user_account_path(review.user.username) %></p>
+		    <p class="r_rating">Rating: <%=review.rating%> out of 5</p>
+			    <% if user_signed_in? %>
+			        <% if current_user.username == review.user.username %>
+			             <div class="review_tools">
+				              <div class="btn-group">
+				                <button class="btn btn-info"><%= link_to raw("<i class=\"icon-edit icon-white\"></i>")+" Edit", edit_review_path(review),:class => "btn-content"%></button>
+				                <button class="btn btn-danger"><%= link_to raw("<i class=\"icon-remove icon-white\"></i>")+" Delete",review,:class => "btn-content",:method=>:delete%></button>
+				              </div>
+				            </div>
+			        <%end%>
+			     <%end%>
+	  	</div>
+	  <br />
+	<%end%>
 <%end%>
 <br />
 </div>

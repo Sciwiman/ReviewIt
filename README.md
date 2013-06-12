@@ -2,10 +2,16 @@ This is the Actual README for this application.
 
 INSTRUCTIONS
 =======================================================================================================================
-This project was developed in chrome and using a 1920x1080 display.
-
-
 How to run:
+
+Firstly go to and follow the instructions given by this website -- https://github.com/hiranpeiris/therubyracer_for_windows
+
+THIS APPLICATION WORKS BEST WITH CHROME
+
+	Features will not be supported on other browsers only chrome. There is a built in method, the homepage will indicate whether or not the browser is suitable.
+
+
+
 You will need two open command prompts.
 	1 is for the rails server
 	The other is for the sunspot search engine
@@ -26,14 +32,14 @@ Now in the latest chrome browser type localhost:3000 in the url
 
 This should dispay the application
 
-Any problems with this please contact me on 0273284307, i seriously dont mind. I want an A
+Any problems with this please contact me on 0273284307, i seriously dont mind. I want an A+
 
 ========================================================================================================================
 
 
 Api documentation can be found in the application in doc/app/index.html
 
-Found problems with the rake doc:app command where not all elements that I had commented would be displayed. Sorry for this inconvinience. I have commented the CRUD elements, the controllers and the models. Views are not commented as it is fairly trivial 
+Found problems with the rake doc:app command where not all elements that I had commented would be displayed. Sorry for this inconvinience. I have commented the CRUD elements, the controllers and the models. Views and css are not commented as it is fairly trivial 
 
 =========================================================================================================================
 Would like to reference several sites and gems that helped me through this project

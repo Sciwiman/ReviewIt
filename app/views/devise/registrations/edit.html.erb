@@ -19,14 +19,19 @@
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></div>
 
-  <div><%= f.submit "Update" %></div>
+  <div class="actions">
+     <button class="btn btn-success" type="submit">Update
+     </button>
+  </div>
 <% end %>
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure? All reviews will be deleted also.", :method => :delete %>.</p>
+<p>Unhappy?
+<button class="btn btn-danger"><%= link_to raw("<i class=\"icon-trash icon-white\"></i>")+" Cancel My Account", registration_path(resource_name),:class => "btn-content",:confirm => "Are you sure? All reviews will be deleted also.",:method=>:delete%></button>
+</p>
 
-<%= link_to "Back", :back %>
+<button class="btn btn-info"><%= link_to raw("<i class=\"icon-arrow-left icon-white\"></i>")+ " Back", :back,:class => "btn-content" %></button>
 </div>
 
 <% content_for :title do %>

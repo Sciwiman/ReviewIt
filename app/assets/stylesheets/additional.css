@@ -25,11 +25,11 @@
 
 
 a.dropdown-toggle{
-	padding:2px;
+  padding:2px;
 }
 
 .wrap, a.brand:hover{
-  -webkit-transition: all 500ms ease-in;
+  -webkit-transition: all 400ms ease-in;
 }
 
 a.btn-content, a.btn-content:hover {

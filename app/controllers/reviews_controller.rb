@@ -1,11 +1,11 @@
 class ReviewsController < ApplicationController
 
-  #Checks to make sure the user is signed in, except on the show and index page
-  before_filter :authenticate_user!, :except => [:show,:index]
+  #Checks to make sure the user is signed in, except on the show and index pages
+  before_filter :authenticate_user!, :except => [:show,:index,:about]
 
   # GET /reviews
   # GET /reviews.json
-  #Perorms a search via the given parameter and displays the results
+  #Performs a search via the given parameter and displays the results
   def index
     @search = Review.search do
       fulltext params[:search]
@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     @reviews = @search.results
     
     respond_to do |format|
-      format.html # index.html.erbcurrent
+      format.html # index.html.erb current
       format.json { render json: @reviews }
     end
 end
@@ -43,14 +43,14 @@ end
   end
 
   # GET /reviews/1/edit
-  #passes in the review to be editted
+  #passes in the review to be edited
   def edit
     @review = Review.find(params[:id])
   end
 
   # POST /reviews
   # POST /reviews.json
-  #Creates a new review wqith the review user id by default set to the signed in user
+  #Creates a new review with the review user id by default set to the signed in user
   def create
     @review = Review.new(params[:review])
     @review.user_id = current_user.id
@@ -67,7 +67,7 @@ end
 
   # PUT /reviews/1
   # PUT /reviews/1.json
-  # Gets the review ready for edditing given by an id for a review
+  # Gets the review ready for editing given by an id for a review
   def update
     @review = Review.find(params[:id])
 
