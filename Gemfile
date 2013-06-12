@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby-1.9.3
+ruby '1.9.3'
 gem 'rails', '3.2.13'
 
 
@@ -21,18 +21,11 @@ gem 'twitter-bootstrap-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-<<<<<<< HEAD
-gem 'sass-rails', '~> 3.2.3'
-gem 'coffee-rails', '~> 3.2.1'
-
-gem 'uglifier', '>= 1.0.3'
-=======
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  gem 'uglifier', '>= 1.0.3'
->>>>>>> 77ecf202cf0126cfe9adec028c72f6f1627f712d
+	gem 'sass-rails', '~> 3.2.3'
+	gem 'coffee-rails', '~> 3.2.1'
+	gem 'uglifier', '>= 1.0.3'
 end
+
 
 group :production do
 gem 'pg'
