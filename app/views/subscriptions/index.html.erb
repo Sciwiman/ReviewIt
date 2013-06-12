@@ -17,7 +17,7 @@
 				<%@username = User.where("id =?",subscription.subscription_user_id).first%>
 		     <%if @username != nil %>
 		     	 <th><%= link_to @username.username, user_account_path(@username.username), :class => "user_sub" %></th>
-		     	 <th> <%=link_to "X", subscription, :method=>:delete , :class => "user_unsub" %></th>
+		     	 <th> <button class="btn btn-danger"><%=link_to raw("<i class=\"icon-trash icon-white\"></i>"), subscription, :method=>:delete%></button></th>
 		     <%end%>
 		 </tr>
 		<%end%>
